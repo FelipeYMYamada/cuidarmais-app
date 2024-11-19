@@ -9,37 +9,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.fmu.cuidarmais_app.dto.UserReqDTO;
-import br.com.fmu.cuidarmais_app.model.Users;
-import br.com.fmu.cuidarmais_app.service.UsersService;
+import br.com.fmu.cuidarmais_app.model.Country;
+import br.com.fmu.cuidarmais_app.service.CountryService;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-@Tag(name = "Users")
+@Tag(name = "Country")
 @RestController
-@RequestMapping("/v1/users")
+@RequestMapping("/v1/country")
 @RequiredArgsConstructor
-public class UsersController {
+public class CountryController {
 
 	@Autowired
-	private UsersService service;
+	private CountryService service;
 	
 	@GetMapping
-	public List<Users> findAll() {
+	public List<Country> findAll() {
 		return service.findAll();
 	}
 	
+	@GetMapping("/search")
+	public List<Country> search(@RequestParam String name) {
+		return service.searchByName(name);
+	}
+	
 	@GetMapping("/{id}")
-	public Users findById(@PathVariable("id") Long id) {
+	public Country findById(@PathVariable("id") Long id) {
 		return service.findById(id);
 	}
 	
 	@PostMapping
-	public Users create(@Valid @RequestBody UserReqDTO request) {
-		return service.create(request);
+	public Country create(@RequestBody Country country) {
+		return service.create(country);
 	}
 	
 	@DeleteMapping("/{id}")

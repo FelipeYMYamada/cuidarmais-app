@@ -1,0 +1,4 @@
+INSERT INTO medical_exam (`name`, `description`) VALUES
+('Exame de Tuberculose', 'Se você vai viajar para a Austrália por mais de 6 meses ou se estiver solicitando um visto de trabalho, estudante ou residência, o governo australiano pode exigir que você faça um teste de tuberculose (normalmente uma radiografia de tórax) antes de emitir o visto.'),
+('Exame de HIV', 'Para alguns tipos de visto (especialmente os de trabalho ou residência permanente), você pode ser solicitado a fazer um exame de HIV. A análise é geralmente realizada como parte do exame médico geral para a solicitação de visto.'), 
+('Exame médico geral', 'Dependendo da categoria do visto e da sua saúde, você pode ser solicitado a fazer um exame médico completo. Isso pode incluir exames de sangue, urina, pressão arterial, exames cardíacos e outros testes conforme necessário.');
