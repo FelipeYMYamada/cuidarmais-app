@@ -23,7 +23,7 @@ public class CompanyExam {
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private Long id;
 	
-	@JoinColumn(name = "medial_exam_id", referencedColumnName = "id")
+	@JoinColumn(name = "medical_exam_id", referencedColumnName = "id")
 	@ManyToOne(optional = false)
 	private MedicalExam medicalExamId;
 

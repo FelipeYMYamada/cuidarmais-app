@@ -14,4 +14,10 @@ public interface CompanyVaccineRepository extends JpaRepository<CompanyVaccine, 
 	
 	@Query(value = "SELECT c FROM CompanyVaccine c WHERE c.vaccineId.id = :vaccineId")
 	List<CompanyVaccine> findByVaccine(Long vaccineId);
+	
+	@Query(value = "SELECT SUM(c.price) FROM CompanyVaccine c " +
+				   "INNER JOIN CountryVaccine cv ON cv.vaccineId = c.vaccineId " +
+				   "WHERE c.companyId.id = :companyId AND cv.countryId.id = :countryId " +
+				   "AND (cv.isRequired = true OR (cv.isRequired = false AND :onlyRequired = true))")
+	Double getTotalValue(Long companyId, Long countryId, boolean onlyRequired);
 }

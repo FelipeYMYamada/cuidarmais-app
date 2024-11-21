@@ -11,4 +11,5 @@ public interface CompanyRepository extends JpaRepository<Company, Long>{
 
 	@Query(value = "SELECT c FROM Company c WHERE c.cnpj = :cnpj")
 	public Optional<Company> findByCnpj(String cnpj);
+	
 }
