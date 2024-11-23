@@ -42,5 +42,9 @@ public class Country {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
 	@JsonIgnore
 	private Collection<CountryExam> countryExamCollection;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "countryId")
+	@JsonIgnore
+	private Collection<Appointment> appointmentCollection;
 
 }

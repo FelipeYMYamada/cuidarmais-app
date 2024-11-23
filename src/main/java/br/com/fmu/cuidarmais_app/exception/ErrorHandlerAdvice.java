@@ -77,4 +77,19 @@ public class ErrorHandlerAdvice {
 				.status(HttpStatus.CONFLICT.value())
 				.body(response);
 	}
+
+	@ExceptionHandler(AppointmentNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleGastoNotFoundException(AppointmentNotFoundException e) {
+		log.warn("AppointmentNotFoundException: " + e.getMessage());
+		
+		ErrorResponse response = new ErrorResponse(
+				LocalDateTime.now(),
+				HttpStatus.NOT_FOUND.value(),
+				HttpStatus.NOT_FOUND.getReasonPhrase(),
+				List.of(e.getMessage()));
+		
+		return ResponseEntity
+				.status(HttpStatus.NOT_FOUND.value())
+				.body(response);
+	}
 }
