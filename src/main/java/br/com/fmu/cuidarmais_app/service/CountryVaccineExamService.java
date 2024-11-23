@@ -8,6 +8,7 @@ import br.com.fmu.cuidarmais_app.dto.CountryVaccineExamDTO;
 import br.com.fmu.cuidarmais_app.exception.CountryNotFoundException;
 import br.com.fmu.cuidarmais_app.model.Country;
 import br.com.fmu.cuidarmais_app.repository.CompanyExamRepository;
+import br.com.fmu.cuidarmais_app.repository.CompanyRepository;
 import br.com.fmu.cuidarmais_app.repository.CompanyVaccineRepository;
 import br.com.fmu.cuidarmais_app.repository.CountryRepository;
 import br.com.fmu.cuidarmais_app.repository.MedicalExamRepository;
@@ -23,6 +24,7 @@ public class CountryVaccineExamService {
 	private final MedicalExamRepository examRepository;
 	private final CompanyVaccineRepository companyVaccineRepository;
 	private final CompanyExamRepository companyExamRepository;
+	private final CompanyRepository companyRepository;
 	
 	public CountryVaccineExamDTO getVaccinesAndExams(Long countryId) {
 		Optional<Country> country = countryRepository.findById(countryId);
@@ -37,6 +39,7 @@ public class CountryVaccineExamService {
 		dto.setRecommended_vaccines(vaccineRepository.findByCountryRequired(countryId, false));
 		dto.setRequired_exams(examRepository.findByCountryRequired(countryId, true));
 		dto.setRecommended_exams(examRepository.findByCountryRequired(countryId, false));
+		dto.setList_company(companyRepository.findAll());
 		
 		return dto;
 	}
@@ -50,6 +53,7 @@ public class CountryVaccineExamService {
 		CountryVaccineExamDTO dto = new CountryVaccineExamDTO();
 		dto.setId(country.get().getId());
 		dto.setName(country.get().getName());
+		dto.setList_company(companyRepository.findAll());
 		dto.setRequired_vaccines(vaccineRepository.findByCountryRequired(countryId, true));
 		dto.setRequired_exams(examRepository.findByCountryRequired(countryId, true));
 		

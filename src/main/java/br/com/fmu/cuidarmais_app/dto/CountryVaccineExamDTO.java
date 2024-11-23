@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import br.com.fmu.cuidarmais_app.model.Company;
 import br.com.fmu.cuidarmais_app.model.MedicalExam;
 import br.com.fmu.cuidarmais_app.model.Vaccine;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class CountryVaccineExamDTO {
 	private List<Vaccine> recommended_vaccines;
 	private List<MedicalExam> required_exams;
 	private List<MedicalExam> recommended_exams;
+	private List<Company> list_company;
 	private Double totalPrice;
 
 }
